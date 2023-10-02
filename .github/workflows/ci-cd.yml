@@ -14,7 +14,8 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Build Docker image
-      run: docker build -t cicdocc:latest ../Dockerfile
+      run: docker build -t cicdocc:latest C:/Users/hmztp/Desktop/cicdocc/Dockerfile
+      
 
   deploy:
     needs: build
