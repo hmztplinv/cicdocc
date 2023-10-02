@@ -15,7 +15,12 @@ jobs:
 
     - name: Build Docker image
       run: docker build -t cicdocc:latest .
-      
+
+    - name: Login to DockerHub
+      run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
+
+    - name: Push Docker image
+      run: docker push cicdocc:latest
 
   deploy:
     needs: build
@@ -32,5 +37,6 @@ jobs:
 
     - name: Deploy to DigitalOcean
       run: |
-        ssh root@161.35.157.43 "docker pull cicdocc:latest"
-        ssh root@161.35.157.43 "docker run -d -p 80:80 cicdocc:latest"
+        ssh root@${{ secrets.DIGITALOCEAN_IP }} "docker pull cicdocc:latest"
+        ssh root@${{ secrets.DIGITALOCEAN_IP }} "docker run -d -p 80:80 cicdocc:latest"
+
