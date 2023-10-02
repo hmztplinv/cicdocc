@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Build Docker image
       run: docker build -t cicdocc:latest .
@@ -23,10 +23,10 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Setup SSH
-      uses: webfactory/ssh-agent@v4.0.1
+      uses: webfactory/ssh-agent@v4.0.3
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
