@@ -22,6 +22,7 @@ jobs:
     - name: Push Docker image
       run: docker push cicdocc:latest
 
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
